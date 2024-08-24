@@ -1,24 +1,41 @@
 import "./App.css";
 
 const ProjectWidget = (props) => {
-    console.log(props)
-    return (<div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 mb-5">
+  console.log(props);
+  return (
+    <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 mb-5">
+      <a href="#">
+        {props.imageSrc2 ? (
+          <div className="flex">
+            <div className="flex-1 flex items-center justify-center">
+              <img
+                className="rounded-t-lg"
+                src={props.imageSrc || ""}
+                alt=""
+              />
+            </div>
+            <div className="flex-1 flex items-center justify-center">
+              <img
+                className="rounded-t-lg"
+                src={props.imageSrc2 || ""}
+                alt=""
+              />
+            </div>
+          </div>
+        ) : (
+          <img className="rounded-t-lg" src={props.imageSrc || ""} alt="" />
+        )}
+      </a>
+      <div className="p-5">
         <a href="#">
-          <img
-            className="rounded-t-lg"
-            src={props.imageSrc || ""}
-            alt=""
-          />
+          <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+            {props.title}
+          </h5>
         </a>
-        <div className="p-5">
-          <a href="#">
-            <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-              {props.title}
-            </h5>
-          </a>
-          <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-            {props.description}
-          </p>
+        <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+          {props.description}
+        </p>
+        {!props.hideLink ? (
           <a
             href={props.link}
             target="_blank"
@@ -41,8 +58,12 @@ const ProjectWidget = (props) => {
               />
             </svg>
           </a>
-        </div>
-      </div>);
+        ) : (
+          <></>
+        )}
+      </div>
+    </div>
+  );
 };
 
 export default ProjectWidget;
