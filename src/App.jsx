@@ -6,23 +6,29 @@ import ProjectWidget from "./Project.jsx";
 import HomeView from "./HomeView.jsx";
 import ProjectView from "./ProjectView.jsx";
 import Navbar from "./NavBar.jsx";
-import { TabContext } from "./TabContext.jsx";
-
+import { TabContext, ProjectsContext } from "./TabContext.jsx";
 
 const tabs = ["Home", "Projects"];
 
 function App() {
   const [tab, setTab] = useState(0);
-
+  const [projInfo, setProjInfo] = useState([]);
   return (
-    <TabContext.Provider value={{tab: tab, setTab: setTab}}>
-      <div className="flex flex-col">
-        <Navbar />
-        <div className="flex flex-col items-center justify-center min-h-screen" style={{paddingTop: "10%"}}>
-        {tab == 0 && <HomeView /> || tab == 1 && <ProjectView />}
+    <ProjectsContext.Provider
+      value={{ projInfo: projInfo, setProjInfo: setProjInfo }}
+    >
+      <TabContext.Provider value={{ tab: tab, setTab: setTab }}>
+        <div className="flex flex-col">
+          <Navbar />
+          <div
+            className="flex flex-col items-center justify-center min-h-screen"
+            style={{ paddingTop: "10%" }}
+          >
+            {(tab == 0 && <HomeView />) || (tab == 1 && <ProjectView />)}
+          </div>
         </div>
-      </div>
-    </TabContext.Provider>
+      </TabContext.Provider>
+    </ProjectsContext.Provider>
   );
 }
 
