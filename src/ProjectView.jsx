@@ -2,14 +2,16 @@ import React, { useEffect, useState, useContext } from "react";
 import ProjectWidget from "./Project.jsx";
 import { collection, onSnapshot, query } from "firebase/firestore";
 import { db } from "./firebase_config.js";
-import { ProjectsContext } from "./TabContext.jsx";
+import { ProjectsContext, TabContext } from "./TabContext.jsx";
 
 const ProjectView = (props) => {
   const { projInfo, setProjInfo } = useContext(ProjectsContext);
+  const { tab, setTab } = useContext(TabContext);
 
   const upper_bound = props.max ? props.max : projInfo.length;
 
   useEffect(() => {
+    setTab(1);
     const querySnapshot = query(collection(db, "projects"));
 
     const unsubscribe = onSnapshot(querySnapshot, (snapshot) => {
@@ -52,7 +54,6 @@ const ProjectView = (props) => {
             hideLink={project.link == "#"}
           />
         ))}
-        ;
       </div>
     </>
   );

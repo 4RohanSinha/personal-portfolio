@@ -41,3 +41,42 @@
 .read-the-docs {
   color: #888;
 }
+
+.markdown-preview {
+  /* Set a base font size */
+  font-size: 16px;
+  white-space: pre-wrap;
+}
+
+.markdown-preview h1,
+.markdown-preview h2,
+.markdown-preview h3,
+.markdown-preview h4,
+.markdown-preview h5,
+.markdown-preview h6,
+.markdown-preview p,
+.markdown-preview ul,
+.markdown-preview ol,
+.markdown-preview li,
+.markdown-preview blockquote,
+.markdown-preview code,
+.markdown-preview pre {
+  font-size: inherit; /* Inherit the base font size */
+  font-weight: normal; /* Normalize font weight */
+  line-height: 1.5; /* Set line height for readability */
+}
+.markdown-preview br {
+  display: none;
+}
+
+/* Additional optional styles */
+.markdown-preview ul,
+.markdown-preview ol {
+  padding-left: 20px; /* Ensure lists are indented */
+}
+
+.markdown-preview blockquote {
+  border-left: 4px solid #ccc;
+  padding-left: 16px;
+  color: #666;
+}

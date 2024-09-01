@@ -1,6 +1,13 @@
+import { useEffect, useContext } from "react";
 import ProjectView from "./ProjectView.jsx";
-
+import { TabContext } from "./TabContext.jsx";
 const HomeView = () => {
+  const { tab, setTab } = useContext(TabContext);
+
+  useEffect(() => {
+    setTab(0);
+  });
+
   return (
     <>
       <p className="mb-10 text-4xl">Hey there!</p>

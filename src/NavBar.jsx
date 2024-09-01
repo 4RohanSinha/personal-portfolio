@@ -12,7 +12,7 @@ const Navbar = (props) => {
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center space-x-4">
             <a
-              href="#home"
+              href="/"
               className={
                 tab == 0
                   ? "px-3 py-2 rounded-md text-sm font-bold"
@@ -23,7 +23,7 @@ const Navbar = (props) => {
               Home
             </a>
             <a
-              href="#about"
+              href="/projects"
               className={
                 tab == 1
                   ? "px-3 py-2 rounded-md text-sm font-bold"
@@ -32,6 +32,17 @@ const Navbar = (props) => {
               onClick={() => setTab(1)}
             >
               Projects
+            </a>
+            <a
+              href="/blog"
+              className={
+                tab == 2
+                  ? "px-3 py-2 rounded-md text-sm font-bold"
+                  : "px-3 py-2 rounded-md text-sm font-medium"
+              }
+              onClick={() => setTab(2)}
+            >
+              Blog
             </a>
             <a
               href="https://github.com/4RohanSinha"
