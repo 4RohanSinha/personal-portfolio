@@ -7,6 +7,7 @@ import ProjectWidget from "./Project.jsx";
 import HomeView from "./HomeView.jsx";
 import ProjectView from "./ProjectView.jsx";
 import Navbar from "./NavBar.jsx";
+import NotFound from "./NotFound.jsx";
 import { Blog } from "./Blog.jsx";
 import {
   TabContext,
@@ -65,7 +66,10 @@ function App() {
                     <Route
                       path="/"
                       element={
-                        <div className="flex flex-col items-center justify-center min-h-screen" style={{ paddingTop: "10%" }}>
+                        <div
+                          className="flex flex-col items-center justify-center min-h-screen"
+                          style={{ paddingTop: "10%" }}
+                        >
                           <HomeView />
                         </div>
                       }
@@ -74,12 +78,16 @@ function App() {
                       path="/projects"
                       element={
                         <div className="flex flex-col">
-                          <div className="flex flex-col items-center justify-center min-h-screen" style={{ paddingTop: "10%" }}>
+                          <div
+                            className="flex flex-col items-center justify-center min-h-screen"
+                            style={{ paddingTop: "10%" }}
+                          >
                             <ProjectView />
                           </div>
                         </div>
                       }
                     ></Route>
+
                     <Route
                       path="/blog"
                       element={
@@ -88,24 +96,19 @@ function App() {
                         </div>
                       }
                     ></Route>
-                    {blogInfo ? (
-                      blogInfo.map((blog, i) => {
-                        console.log(blog);
-                        return (
-                          <Route
-                            path={"/blog/" + blog.id}
-                            element={
-                              <div className="mt-5 text-left align-top flex items-start absolute top-5">
-                                <Blog blog={blog} />
-                              </div>
-                            }
-                            key={i}
-                          />
-                        );
-                      })
-                    ) : (
-                      <Route />
-                    )}
+                    <Route path="/blog/:blogId" element={<Blog />}></Route>
+
+                    <Route
+                      path="*"
+                      element={
+                        <div
+                          className="flex flex-col items-center justify-center min-h-screen"
+                          style={{ paddingTop: "10%" }}
+                        >
+                          <NotFound />
+                        </div>
+                      }
+                    ></Route>
                   </Routes>
                 </div>
               </div>
@@ -116,6 +119,31 @@ function App() {
     </Router>
   );
 }
+
+/*
+{blogInfo ? (
+                      blogInfo.map((blog, i) => {
+                        console.log(blog);
+                        return (
+                          <Route
+                            path={"/blog/" + blog.id}
+                            element={
+                              <div
+                                className="mt-5 text-left align-top flex items-start absolute top-5"
+                                style={{ paddingTop: "10%" }}
+                              >
+                                <Blog blog={blog} />
+                              </div>
+                            }
+                            key={i}
+                          />
+                        );
+                      })
+                    ) : (
+                      <Route />
+                    )}
+
+*/
 
 export default App;
 /*

@@ -76,18 +76,18 @@ export const BlogPreview = (props) => {
   return (
     <div className="bg-white border border-gray-200 rounded-lg p-10 shadow dark:bg-gray-800 dark:border-gray-700 mb-5">
       <h1 className="text-2xl font-bold" style={{ marginBottom: "7%" }}>
-        {props.blog.title}
+        {data ? props.blog.title : "Loading..."}
       </h1>
       <div className="markdown-preview">
         <p>
           {data
-            ? markdownToPlainText(truncateAfterNewlines(data, 4, 20))
+            ? truncateAfterNewlines(markdownToPlainText(data), 4, 20)
                 .replace(/\s+/g, " ")
                 .trim()
-            : "Loading..."}
+            : ""}
         </p>
       </div>
-      {!props.hideLink ? (
+      {!props.hideLink && data ? (
         <a
           href={`/blog/${props.blog.id}`}
           onClick={() => {

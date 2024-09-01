@@ -15,10 +15,10 @@ const ProjectView = (props) => {
     const querySnapshot = query(collection(db, "projects"));
 
     const unsubscribe = onSnapshot(querySnapshot, (snapshot) => {
-      setProjInfo(
+      setProjInfo( 
         snapshot.docs.map((doc) => {
           return { id: doc.id, ...doc.data() };
-        })
+        }).sort((a, b) => a.id - b.id)
       );
     });
 
