@@ -1,6 +1,6 @@
 import React from "react";
 import { useContext } from "react";
-import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
 import { TabContext } from "./TabContext.jsx";
 import "./App.css";
 
@@ -59,6 +59,14 @@ const Navbar = (props) => {
               className="hover:text-gray-300"
             >
               <FaLinkedin className="h-6 w-6" />
+            </a>
+            <a
+              href="mailto:rohansinha@g.ucla.edu"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-gray-300"
+            >
+              <FaEnvelope className="h-6 w-6" />
             </a>
           </div>
           <div className="text-black font-semibold ml-auto text-xl">

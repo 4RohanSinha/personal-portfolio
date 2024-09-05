@@ -3,10 +3,13 @@ import { BlogViewContext, TabContext } from "./TabContext";
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
 import rehypeRaw from "rehype-raw";
 import remarkBreaks from "remark-breaks";
+import remarkGfm from 'remark-gfm';
+import rehypePrismPlus from 'rehype-prism-plus';
 import Markdown from "react-markdown";
 import { useParams } from "react-router-dom";
 import NotFound from "./NotFound.jsx";
 import Loading from "./Loading.jsx";
+import 'prismjs/themes/prism-tomorrow.css'; // Choose a Prism theme for syntax highlighting
 
 export const Blog = (props) => {
   const { blogsText, setBlogsText, curBlog, setCurBlog } =
@@ -89,7 +92,7 @@ export const Blog = (props) => {
           Back
         </a>
         <div>
-          <Markdown rehypePlugins={[rehypeRaw]} remarkPlugins={[remarkBreaks]}>
+          <Markdown rehypePlugins={[rehypeRaw, rehypePrismPlus]} remarkPlugins={[remarkBreaks, remarkGfm]}>
             {curBlog ? curBlog : "Loading..."}
           </Markdown>
         </div>

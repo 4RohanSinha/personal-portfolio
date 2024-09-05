@@ -53,10 +53,10 @@ export const BlogPreview = (props) => {
   useEffect(() => {
     const getDocument = async () => {
       if (blogsText[props.blog.document]) {
-        setData(blogsText[props.blog.document]);
+        setData(blogsText[props.blog.id + ".md"]);
         return;
       }
-      const url = await getDownloadURL(ref(storage, props.blog.document)).then(
+      const url = await getDownloadURL(ref(storage, props.blog.id + ".md")).then(
         (url) => url
       );
 
@@ -66,13 +66,13 @@ export const BlogPreview = (props) => {
           setData(response);
           setBlogsText({
             ...blogsText,
-            [props.blog.document]: response,
+            [props.blog.id + ".md"]: response,
           });
         });
     };
 
     getDocument();
-  }, [props.blog.document]);
+  }, [props.blog.id]);
   return (
     <div className="bg-white border border-gray-200 rounded-lg p-10 shadow dark:bg-gray-800 dark:border-gray-700 mb-5">
       <h1 className="text-2xl font-bold" style={{ marginBottom: "7%" }}>

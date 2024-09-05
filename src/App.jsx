@@ -29,7 +29,12 @@ function App() {
   const [curBlog, setCurBlog] = useState(null);
 
   useEffect(() => {
-    const querySnapshot = query(collection(db, "posts-test"));
+    let querySnapshot = query(collection(db, "posts-dev"));
+    
+    if (import.meta.env.MODE === "production") {
+      querySnapshot = query(collection(db, "posts-prod"));
+    }
+
 
     const unsubscribe = onSnapshot(querySnapshot, (snapshot) => {
       setBlogInfo(
