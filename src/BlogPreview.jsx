@@ -81,7 +81,7 @@ export const BlogPreview = (props) => {
       <div className="markdown-preview">
         <p>
           {data
-            ? truncateAfterNewlines(markdownToPlainText(data), 4, 20)
+            ? truncateAfterNewlines(markdownToPlainText(data), 4, 40)
                 .replace(/\s+/g, " ")
                 .trim()
             : ""}

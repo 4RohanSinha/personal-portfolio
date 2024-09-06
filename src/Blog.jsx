@@ -3,13 +3,38 @@ import { BlogViewContext, TabContext } from "./TabContext";
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
 import rehypeRaw from "rehype-raw";
 import remarkBreaks from "remark-breaks";
-import remarkGfm from 'remark-gfm';
-import rehypePrismPlus from 'rehype-prism-plus';
+import remarkGfm from "remark-gfm";
+import rehypePrismPlus from "rehype-prism-plus";
 import Markdown from "react-markdown";
 import { useParams } from "react-router-dom";
 import NotFound from "./NotFound.jsx";
 import Loading from "./Loading.jsx";
-import 'prismjs/themes/prism-tomorrow.css'; // Choose a Prism theme for syntax highlighting
+import "prismjs/themes/prism-tomorrow.css"; // Choose a Prism theme for syntax highlighting
+import styled from "styled-components";
+
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { tomorrow } from "react-syntax-highlighter/dist/cjs/styles/prism";
+
+const Header1 = styled.h1`
+  margin-bottom: 1em;
+`;
+
+const Header2 = styled.h2`
+  font-size: 2rem; /* Adjust the size as needed */
+  margin-bottom: 1em;
+`;
+
+const UnorderedList = styled.ul`
+  list-style-type: disc;
+  ul {
+    margin-top: 0.5em; /* Space above nested lists */
+    padding-left: 1em; /* Adjust this value for further indentation */
+  }
+`;
+
+const Paragraph = styled.p`
+  margin-bottom: 2em;
+`;
 
 export const Blog = (props) => {
   const { blogsText, setBlogsText, curBlog, setCurBlog } =
@@ -47,8 +72,6 @@ export const Blog = (props) => {
             setLoading(false);
             setFound(true);
           });
-
-          
       } catch (error) {
         setLoading(false);
         setFound(false);
@@ -92,7 +115,36 @@ export const Blog = (props) => {
           Back
         </a>
         <div>
-          <Markdown rehypePlugins={[rehypeRaw, rehypePrismPlus]} remarkPlugins={[remarkBreaks, remarkGfm]}>
+          <Markdown
+            components={{
+              a: ({ node, ...props }) => <a target="_blank" rel = 'noopener noreferrer' {...props} />,
+              em: ({ node, ...props }) => <i style={{fontFamily: "monospace"}} {...props} />,
+              h1: ({ node, ...props }) => <Header1 {...props} />,
+              h2: ({ node, ...props }) => <Header2 {...props} />,
+              ul: ({ node, ...props }) => <UnorderedList {...props} />,
+              code({ node, inline, className, children, ...props }) {
+                const match = /language-(\w+)/.exec(className || "");
+
+                return !inline && match ? (
+                  <SyntaxHighlighter
+                    style={tomorrow}
+                    PreTag="div"
+                    language={match[1]}
+                    {...props}
+                  >
+                    {String(children).replace(/\n$/, "")}
+                  </SyntaxHighlighter>
+                ) : (
+                  <code className={className} {...props}>
+                    {children}
+                  </code>
+                );
+              },
+              p: ({ node, ...props }) => <Paragraph {...props} />,
+            }}
+            rehypePlugins={[rehypeRaw]}
+            remarkPlugins={[remarkBreaks, remarkGfm]}
+          >
             {curBlog ? curBlog : "Loading..."}
           </Markdown>
         </div>
@@ -100,3 +152,4 @@ export const Blog = (props) => {
     </div>
   );
 };
+//rehypePrismPlus
