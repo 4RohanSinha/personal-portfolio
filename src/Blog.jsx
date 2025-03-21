@@ -85,7 +85,7 @@ export const Blog = (props) => {
   if (!loading && !found) return <NotFound />;
   return (
     <div
-      className="mt-5 text-left align-top flex items-start absolute top-5"
+      className="mt-5 text-left align-top flex items-start absolute top-5 bg-gray-900 h-full overflow-auto"
       style={{ paddingTop: "10%" }}
     >
       <div

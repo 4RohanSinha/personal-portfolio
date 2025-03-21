@@ -29,7 +29,7 @@ const ProjectView = (props) => {
     <>
       {upper_bound == projInfo.length ? (
         <>
-          <p className="mb-10 text-4xl">Project Portfolio</p>
+          <p className="mb-10 text-4xl font-bold">Project Portfolio</p>
           <h2 className="mb-10">
             Below is an extended list of projects I have been working on!
           </h2>
@@ -42,7 +42,7 @@ const ProjectView = (props) => {
       ) : (
         <p></p>
       )}
-      <div className="w-full max-w-md">
+      { 1 == 1 ? (<div className="w-full max-w-md">
         {projInfo.slice(0, upper_bound).map((project, i) => (
           <ProjectWidget
             key={i}
@@ -54,7 +54,7 @@ const ProjectView = (props) => {
             hideLink={project.link == "#"}
           />
         ))}
-      </div>
+      </div>) : <></> }
     </>
   );
 };

@@ -74,11 +74,11 @@ export const BlogPreview = (props) => {
     getDocument();
   }, [props.blog.id]);
   return (
-    <div className="bg-white border border-gray-200 rounded-lg p-10 shadow dark:bg-gray-800 dark:border-gray-700 mb-5">
-      <h1 className="text-2xl font-bold" style={{ marginBottom: "7%" }}>
+    <div className="bg-gray-600 border border-gray-600 rounded-lg p-10 shadow dark:bg-gray-800 dark:border-gray-700 mb-5">
+      <h1 className="text-2xl font-bold text-gray-200" style={{ marginBottom: "7%" }}>
         {data ? props.blog.title : "Loading..."}
       </h1>
-      <div className="markdown-preview">
+      <div className="markdown-preview text-gray-400">
         <p>
           {data
             ? truncateAfterNewlines(markdownToPlainText(data), 4, 40)

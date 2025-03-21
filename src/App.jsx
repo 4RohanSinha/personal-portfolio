@@ -28,7 +28,10 @@ function App() {
   const [blogsText, setBlogsText] = useState({});
   const [curBlog, setCurBlog] = useState(null);
 
+
   useEffect(() => {
+    document.documentElement.classList.add('dark');
+
     let querySnapshot = query(collection(db, "posts-dev"));
     
     if (import.meta.env.MODE === "production") {
@@ -72,7 +75,7 @@ function App() {
                       path="/"
                       element={
                         <div
-                          className="flex flex-col items-center justify-center min-h-screen"
+                          className="flex flex-col items-center justify-center min-h-screen bg-gray-900"
                           style={{ paddingTop: "10%" }}
                         >
                           <HomeView />
@@ -84,7 +87,7 @@ function App() {
                       element={
                         <div className="flex flex-col">
                           <div
-                            className="flex flex-col items-center justify-center min-h-screen"
+                            className="flex flex-col items-center justify-center min-h-screen bg-gray-900"
                             style={{ paddingTop: "10%" }}
                           >
                             <ProjectView />
@@ -96,7 +99,7 @@ function App() {
                     <Route
                       path="/blog"
                       element={
-                        <div className="flex flex-col items-center justify-center min-h-screen">
+                        <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900">
                           <BlogListView />
                         </div>
                       }
@@ -107,7 +110,7 @@ function App() {
                       path="*"
                       element={
                         <div
-                          className="flex flex-col items-center justify-center min-h-screen"
+                          className="flex flex-col items-center justify-center min-h-screen bg-gray-900"
                           style={{ paddingTop: "10%" }}
                         >
                           <NotFound />
